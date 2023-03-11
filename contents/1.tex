@@ -1,4 +1,4 @@
-\section{Part 1}
+\section{Forward, Futures \& Hedging}
 \subsection*{Formulas}
 \[\sum_{i=0}^{n-1} ar^i = \frac{a(1-r^n)}{1-r}\]
 For given rate $r\%$ over time period $t\in[0, T]$,
@@ -9,16 +9,92 @@ discount factor $d_{0,T}$ is given
 To prove $A=B$, show strategies for $A\neq B$.
 If $A>B$, short on $A$, long on $B$, and vice versa.
 \subsection*{1.1.2 Asset w/ Predictable Income}
-\[F_0 = (S_0-C)/d_{0,T}, where C = C'd_{0,t}\]
-\includegraphics[width=\linewidth]{contents/1.1.2.png}
+\[F_0 = (S_0-C)/d_{0,T}, C = C'd_{0,t}\]
+\includegraphics[width=0.8\linewidth]{contents/1.1.2.png}
 \subsection*{1.1.3 Asset w/ Continuous Dividend Yield}
 Annualized continuous dividend yield of $q$
 \[F_0=S_0\exp((r-q)T)\]
 \subsection*{1.1.4 Asset w/ Storage Costs}
-\includegraphics[width=\linewidth]{contents/1.1.4.png}
+\includegraphics[width=0.8\linewidth]{contents/1.1.4.png}
 \[d_{0,K} F_0 = S_0 + \sum_{j=0}^{K-1}d_{0,j}C_j\]
 \subsection*{1.1.5 Convenience Yield}
 \[d_{0,K} F_0 = S_0 + \sum_{j=0}^{K-1}d_{0,j}(C_j-y)\]
+
 \subsection*{1.2 Value of Forward}
-\includegraphics[width=\linewidth]{contents/1.2.png}
+\includegraphics[width=0.5\linewidth]{contents/1.2.png}
+\\Value of \textbf{long} position:
 \[f_t = (F_t-F_0)d_{t,T}\]
+
+\subsection*{1.3.1 Marked-to-Market Mechanism}
+\begin{enumerate}
+    \item Investor deposits intial margin
+    \item Account is marked to market each day on 
+    gain/loss of futures position
+    \item Margin account balance flutuates day to day
+    \item If balance drops below threshold, 
+    investor required to top up with cash
+\end{enumerate}
+\subsection*{1.3.2 Futures-Forwards Equivalence}
+If interest rates are known to follow expectation dynamics,
+thentheoretical futures and forward prices of
+corresponding contracts are identical.
+
+\subsection*{1.4.1 Short Hedge}
+To \textbf{lock in} a selling price, applicable when
+\begin{itemize}
+    \item already owns asset and expects to sell in futures
+    \item does not own asset but will in future, 
+    and sell later afterward
+\end{itemize}
+Net cash inflow of $F_0=S_T+(F_0-S_T)$ is locked in.\\
+With basis risk,
+\[F_1+b_2=S_2+(F_1-F_2)\]
+\subsection*{1.4.2 Long Hedge}
+To \textbf{lock in} a purchase price, applicable when hedger
+has to purchase asset in the future.\\
+Net cash outflow of $F_0=S_T-(S_T-F_0)$ is locked in.\\
+With basis risk,
+\[F_1+b_2=S_2-(F_2-F_1)\]
+\subsection*{1.4.3 Basis Risk}
+Perfect hedges often not possible in reality. 
+\begin{enumerate}
+    \item unavailability of futures contract 
+    matching asset obligation dates
+    \item quantity of asset obligated may not be 
+    integer multiple of contract size
+    \item lack of liquidity in futures market
+    \item terms of delivery may not coincide with obligation
+    \item unavailability of futures contracts 
+    with underlying asset exactly matching asset hedged
+\end{enumerate}
+Define basis $b_i$ at time $t_i$, 
+with spot price $S_i$ and futures price $F_i$ as
+\[b_i=S_i-F_i\]
+\includegraphics[width=0.5\linewidth]{contents/1.4.3.png}
+\\Effective price can be written as
+\[F_1 + b_2 = S_1 - (b_1 - b_2)\]
+Price at time $t_1$, offset by diff btw 
+\textbf{initial basis} $b_1$ and \textbf{cover basis} $b_2$.\\
+Should choose futures contract with maturity close,
+but later than expiration of hedge.
+\subsection*{1.4.4 Cross Hedging}
+Futures and spot price of proxy asset at time $t_i$
+denoted by $F_i^*$ and $S_i^*$ respectively.
+Effective price achieved is
+\[S_2+(F_1^* - F_2^*) = F_1^* + (S_2^* - F_2^*) + (S_2 - S_2^*)\]
+\subsection*{1.5 Minimum Variance Hedge}
+At $t_1$, hedger has obligation 
+to purchase $Q_a$ units of asset at time $t_2$.
+Cash flow at $t_2$ is
+\[x=Q_a(S_1+\Delta S)\]
+Suppose $F$ is futures price of contract used as hedge,
+$Q_f$ denotes size of long futures contract taken.
+Hedge ratio 
+\[h=\frac{Q_f}{Q_a}\]
+At time $t_2$, cash flow on hedged position
+\[y=Q_a(S_1+\Delta S - h\delta F)\]
+\[\Delta F = F_2 - F_1\]
+Minimum-Variance Hedge ratio
+\[h^*=\frac{cov(\Delta S, \Delta F)}{var(\Delta F)}\]
+\[h^*=\rho\frac{\sigma_{\Delta S}}{\sigma_{\Delta F}}\]
+\[Q_f^*=Q_a h^*\]
