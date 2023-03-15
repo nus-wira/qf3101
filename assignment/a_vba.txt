@@ -1,0 +1,41 @@
+Function GetTermStructure(SR3Rates As Range, SR3Days As Range) As Double()
+    Dim totalDays As Integer
+    Dim term() As Double
+    ReDim term(1 To SR3Rates.Count, 1 To 1) As Double
+    ' Initialize first term rate and days
+    term(1, 1) = SR3Rates(1)
+    totalDays = SR3Days(1)
+    
+    
+    For i = 2 To SR3Rates.Count
+        f = SR3Rates(i)
+        d = SR3Days(i)
+        period_rate_plus_one = (1 + term(i - 1, 1) * totalDays / 360) * (1 + f * d / 360)
+        totalDays = totalDays + d
+        term(i, 1) = (period_rate_plus_one - 1) * 360 / totalDays
+    Next i
+    GetTermStructure = term
+        
+End Function
+
+Function GetSwapRate(K As Integer, SR3Rates As Range, SR3Days As Range) As Double
+    Dim discountSum As Double
+    Dim discountRate As Double
+    discountSum = 0
+    discountRate = 1
+    
+    For i = 1 To 4 * K
+        f = SR3Rates(i)
+        Days = SR3Days(i)
+        discountRate = discountRate / (1 + f * Days / 360)
+        
+        ' Add to discountSum every half year = 2 * 3month periods
+        If i Mod 2 = 0 Then
+            discountSum = discountSum + discountRate
+        End If
+    Next i
+    
+    ' Multiply by 2 since formula is per period (half-year)
+    GetSwapRate = 2 * (1 - discountRate) / discountSum
+    
+End Function

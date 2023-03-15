@@ -1,0 +1,60 @@
+Function BS_Call(S0, x, r, q, v, T) As Double
+    d1 = (Log(S0 / x) + (r + v * v / 2) * T) / (v * Sqr(T))
+    d2 = d1 - v * Sqr(T)
+    BS_Call = S0 * Exp(-q * T) * Application.WorksheetFunction.Norm_S_Dist(d1, True) - x * Exp(-r * T) * Application.WorksheetFunction.Norm_S_Dist(d2, True)
+End Function
+
+Sub FillOptionPrices()
+    Dim Trange As Range, Crange As Range
+    Dim S0 As Double, x As Double, r As Double, q As Double, v As Double, T As Double
+    S0 = Range("B1")
+    x = Range("B2")
+    r = Range("B3")
+    q = Range("B4")
+    v = Range("B5")
+    Set Trange = Worksheets(1).Range("A8:A28")
+    Set Crange = Worksheets(1).Range("C8:C28")
+    For i = 1 To 21
+        T = Trange(i)
+        Crange(i) = BS_Call(S0, x, r, q, v, T)
+    Next i
+End Sub
+
+Function OptionPrices(S0, x, r, q, v, Trange As Range) As Currency()
+    ' Dim Crange As Range
+    Dim T As Double
+    ' Dim count As Integer
+    ' count = Trange.count
+    Dim var() As Currency
+    ReDim var(1 To Trange.Count, 1 To 1) As Currency
+    For i = 1 To Trange.Count
+        T = Trange(i)
+        var(i, 1) = BS_Call(S0, x, r, q, v, T)
+    Next i
+    OptionPrices = var
+End Function
+
+Function LinearSystemSolution(A As Range, b As Range) As Double()
+    Dim Ainv As Variant
+    Nrow = A.Rows.Count
+    Ncol = A.Columns.Count
+    
+    If Nrow <> Ncol Then
+        MsgBox "Coefficient Matrix must be square!"
+        Return
+    End If
+    
+    
+    Dim x() As Double
+    ReDim x(1 To Nrow, 1 To 1) As Double
+    
+    Ainv = Application.WorksheetFunction.MInverse(A)
+    
+    For i = 1 To Nrow
+        x(i, 1) = 0
+        For j = 1 To Ncol
+            x(i, 1) = x(i, 1) + Ainv(i, j) * b(j)
+        Next j
+    Next i
+    LinearSystemSolution = x
+End Function
