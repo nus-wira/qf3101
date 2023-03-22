@@ -31,13 +31,68 @@
 
 \subsection{Implied Forward SOFR Term Structure}
 
+\includegraphics*[width=\linewidth]{termstructure.png}
+The term structure is downward sloping for at least the next 4 years, 
+which signifies that the economy is in, or about to enter, a recessive period.
+There is a slight uptrend afterwards till the end of the decade, 
+signifying a predicted expansionary period.
+
 \subsection{Swap Rate for Deferred Interest Rate Swap}
 
+\begin{table}[h]
+  \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+  \hline
+  K      & 1      & 2      & 3      & 4      & 5      & 6      & 7      & 8      \\ \hline
+  Jun-23 & 4.36\% & 3.99\% & 3.80\% & 3.67\% & 3.61\% & 3.57\% & 3.56\% & 3.56\% \\ \hline
+  Sep-23 & 4.12\% & 3.82\% & 3.68\% & 3.57\% & 3.53\% & 3.51\% & 3.51\% & 3.51\% \\ \hline
+  Dec-23 & 3.91\% & 3.70\% & 3.58\% & 3.50\% & 3.47\% & 3.47\% & 3.47\% & 3.48\% \\ \hline
+  Mar-24 & 3.73\% & 3.59\% & 3.49\% & 3.44\% & 3.43\% & 3.43\% & 3.44\% & 3.46\% \\ \hline
+  \end{tabular}
+  \end{table}
+Similar to the term structure, the swap rate drops for longer swap periods. 
+It is also lower for further deferred start periods compared to earlier.
 
 %======================================
 \newpage
 \section{Efficient Equity Portfolios}
+\subsection{Data collection and preparation.}
+Average rate of return
+\[r =\begin{bmatrix}
+  0.5583\% & 0.1963\% & 0.1510\% & 0.2355\% & -0.0618\% \\
+   
+  \end{bmatrix}^T \]
+Covariance matrix
+\[ C = 
+\begin{bmatrix}
+  0.00176 & 0.00064 & 0.00061 & 0.00099 & 0.00074 \\
+  0.00064 & 0.00094 & 0.00070 & 0.00111 & 0.00080 \\
+  0.00061 & 0.00070 & 0.00179 & 0.00100 & 0.00075 \\
+  0.00099 & 0.00111 & 0.00100 & 0.00392 & 0.00179 \\
+  0.00074 & 0.00080 & 0.00075 & 0.00179 & 0.00297 \\
+   
+  \end{bmatrix}  \]
+On average, AAPL performs best, while HAS performs worst.
+The covariance matrix is entirely positive, 
+so it indicates that all 5 stocks tend to move in the same direction.
 
+\subsection{Minimum Variance Point Portfolio And An Efficient Portfolio.}
+Minimum Variance portfolio with weight vector
+\[w_G =\begin{bmatrix}
+  0.19281 & 0.69828 & 0.15050 & -0.10442 & 0.06284 \\
+   
+  \end{bmatrix}^T \]
+with expected rate of return
+\[r_G = 0.2390\%\]
+and variance 0.000818.\\
+An efficient portfolio with weight vector
 
+\[w_m = \begin{bmatrix}
+  1.159769 & 0.311124 & -0.061948 & 0.049304 & -0.458249 \\
+  \end{bmatrix}^T\]
+with expected rate of return
+\[r_m = 0.7392\%\]
+and variance 0.002531.\\
+It is clear that any portfolio other than the minimum variance portfolio
+will have a higher variance.
 
 \end{document}
