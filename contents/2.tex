@@ -92,3 +92,36 @@ Changes to margin account
 \begin{center}
 \includegraphics[width=0.8\linewidth]{contents/2.2.3.png}
 \end{center}
+\subsection*{2.2.4 Treasury Bond Futures}
+Hypothetical 30-year 6\% (semi-annual) coupon bond w par value of \$100,000.
+\[P_inv = N\times F_T \times CF + AI\]
+Conversion Factor (CF) is clean price of \$1 coupon bond 
+with maturity equal to deliverable bond if priced to yield 6\%.\\
+With $n$ remaining coupon payments,
+\[P=\frac{1}{1.03^{w+n-1}}+\sum_{i=0}^{n-1} \frac{c}{1.03^{w+i}}-c(1-w)\]
+$w\in\{0.5,1\}$ is rounded to nearest quarter.
+
+Cheapest-to-Deliver (CTD)
+\[DPrice = CPrice + AI_t\]
+Gross Basis
+\[GB = CPrice - F_t \times CF\]
+Net Basis
+\[NB = DPrice \times (1+r\frac{D}{360})-(F_t\times CF + AI)\]
+Implied Repo Rate (IRR)
+\[IRR=\frac{(F_t\times CF + AI) - DPrice}{DPrice}\times \frac{360}{D}\]
+\includegraphics[width=0.8\linewidth]{contents/2.2.4.png}
+\subsection*{2.2.5 Forward Rate Agreements (FRA)}
+E.g. FRA covering period one month and ending four months is $1\times4$ contract.
+Pricing FRAs, X is fixed rate (actual/360), y is actual ref rate (actual/360).
+\[X = (\frac{d_{0,T}}{d_{0,T+m}}-1)\times\frac{360}{m}\]
+Value of FRA
+\[v=[d_{t,T} - (1+X\times\frac{m}{360})\times d_{t,T+m}]\times N\]
+
+\subsection*{2.3.1 Currency Prepaid Forward}
+\[F_0^p=x_0 d_{0,T}(r_u)\]
+for interest rate $r_u$, current exchange rate $x_0$.
+\subsection*{2.3.2 Currency Forward}
+\[F_0 = F_0^p / d_{0,T}(r_s)\]
+Essentially the forward exchange rate.
+\subsection*{2.3.3 Currency Futures}
+FX futures convention: \textbf{base-currency/terms-currency}.
