@@ -90,7 +90,7 @@ Changes to margin account
     results in long position being decreased by \$25.
 \end{itemize}
 \begin{center}
-\includegraphics[width=0.8\linewidth]{contents/2.2.3.png}
+\includegraphics[width=0.6\linewidth]{contents/2.2.3.png}
 \end{center}
 \subsection*{2.2.4 Treasury Bond Futures}
 Hypothetical 30-year 6\% (semi-annual) coupon bond w par value of \$100,000.
@@ -109,13 +109,15 @@ Net Basis
 \[NB = DPrice \times (1+r\frac{D}{360})-(F_t\times CF + AI)\]
 Implied Repo Rate (IRR)
 \[IRR=\frac{(F_t\times CF + AI) - DPrice}{DPrice}\times \frac{360}{D}\]
-\includegraphics[width=0.8\linewidth]{contents/2.2.4.png}
+\begin{center}
+    \includegraphics[width=0.6\linewidth]{contents/2.2.4.png}
+\end{center}
 \subsection*{2.2.5 Forward Rate Agreements (FRA)}
 E.g. FRA covering period one month and ending four months is $1\times4$ contract.
 Pricing FRAs, X is fixed rate (actual/360), y is actual ref rate (actual/360).
-\[X = (\frac{d_{0,T}}{d_{0,T+m}}-1)\times\frac{360}{m}\]
+\[X = \left(\frac{d_{0,T}}{d_{0,T+m}}-1\right)\times\frac{360}{m}\]
 Value of FRA
-\[v=[d_{t,T} - (1+X\times\frac{m}{360})\times d_{t,T+m}]\times N\]
+\[v=[d_{t,T} - \left(1+X\times\frac{m}{360}\right)\times d_{t,T+m}]\times N\]
 
 \subsection*{2.3.1 Currency Prepaid Forward}
 \[F_0^p=x_0 d_{0,T}(r_u)\]
