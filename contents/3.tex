@@ -1,7 +1,8 @@
 \section{Swaps}
 \subsection*{3.2.1 Swap Rate}
-\[N-d_{0,K}N=N(1-d_0,K)\]
+\[N-d_{0,K}N=N(1-d_{0,K})\]
 \[r = \frac{1-d_{0,K}}{\sum_{i=1}^K \frac{t_i}{360}d_{0,i}}\]
+
 \subsection*{3.2.2 Valuation of Swap}
 \[B_{fl} = (N+f_1)\exp{(-r_1 t_1)}\]
 \[B_{fix} = N\exp{(-r_n t_n)} + \sum_{i=1}^n k\exp{(-r_i t_i)}\]
@@ -9,10 +10,13 @@
 \begin{center}
 \includegraphics[width=0.3\linewidth]{contents/3.2.2.png}
 \end{center}
+
 \subsection*{3.2.3 Arranging a Swap}
-A desires floating rate, B wants fixed rate.\\
+A desires floating rate, B wants fixed rate.
+\begin{center}
 \includegraphics[width=0.3\linewidth]{contents/3.2.3.1.png}
-\includegraphics[width=0.5\linewidth]{contents/3.2.3.2.png}\\
+\includegraphics[width=0.5\linewidth]{contents/3.2.3.2.png}
+\end{center}
 \textbf{Outcome:} A effectively borrows at 6-month floating rate$+0.5\%$
 and B borrows at 10\%.\\
 Savings distribution: 0.5\% for A, 1\% for B, 0.5\% for bank.
