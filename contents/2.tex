@@ -101,19 +101,26 @@ Conversion Factor (CF) is clean price of \$1 coupon bond
 with maturity equal to deliverable bond if priced to yield 6\%.\\
 With $n$ remaining coupon payments,
 \[P=\frac{1}{1.03^{w+n-1}}+\sum_{i=0}^{n-1} \frac{c}{1.03^{w+i}}-c(1-w)\]
-$w\in\{0.5,1\}$ is rounded to nearest quarter.
+$w\in\{0.5,1\}$ is rounded to nearest quarter.\\
+$CPrice$ is quoted bond price. $F_t$ is futures price.
 
-Cheapest-to-Deliver (CTD)
+Cheapest-to-Deliver (CTD)\\
+$0$ is last coupon date, $t$ is till current date, 
+$t+D$ until delivery, $T$ until next coupon
 \[DPrice = CPrice + AI_t\]
+\[AI_t = \frac{t}{T}\times \frac{c}{2}\times\$100\]
+\[AI = \frac{t+D}{T}\times \frac{c}{2}\times\$100\]
 Gross Basis
 \[GB = CPrice - F_t \times CF\]
 Net Basis
 \[NB = DPrice \times (1+r\frac{D}{360})-(F_t\times CF + AI)\]
-Implied Repo Rate (IRR)
+Implied Repo Rate (IRR)\\
+rate of return from selling bond futures, then buying actual bond
 \[IRR=\frac{(F_t\times CF + AI) - DPrice}{DPrice}\times \frac{360}{D}\]
 \begin{center}
     \includegraphics[width=0.6\linewidth]{contents/2.2.4.png}
 \end{center}
+\[t=89, D=46, T=185\]
 
 \subsection*{2.2.5 Forward Rate Agreements (FRA)}
 E.g. FRA covering period one month and ending four months is $1\times4$ contract.
